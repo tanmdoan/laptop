@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Welcome to the thoughtbot laptop script!
+# Welcome to the Tan's laptop script!
 # Be prepared to turn your laptop (or desktop, no haters here)
 # into an awesome development machine.
 
@@ -45,6 +45,10 @@ fi
 
 # shellcheck disable=SC2016
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
+
+# installing oh-my-zsh
+fancy_echo "Installing Oh-My-Zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 HOMEBREW_PREFIX="/usr/local"
 
@@ -95,11 +99,11 @@ tap "heroku/brew"
 brew "universal-ctags", args: ["HEAD"]
 brew "git"
 brew "openssl"
-brew "rcm"
 brew "reattach-to-user-namespace"
 brew "the_silver_searcher"
 brew "tmux"
 brew "neovim"
+cask "iterm2"
 
 # Heroku
 brew "heroku/brew/heroku"
@@ -163,6 +167,7 @@ bundle config --global jobs $((number_of_cores - 1))
 fancy_echo "Installing latest Node ..."
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs"
+
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
